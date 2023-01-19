@@ -6,6 +6,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     mode: 'development', // LE INDICO EL MODO EXPLICITAMENTE
+    devtool: 'source-map', // source map es un mapeo que se realiza entre el código original y el código transformado, tanto para archivos JavaScript como para archivos CSS. De esta forma podremos debuggear tranquilamente nuestro código.
     entry: './src/index.js', // el punto de entrada de mi aplicación
     output: { // Esta es la salida de mi bundle
         path: path.resolve(__dirname, 'dist'),
@@ -71,4 +72,11 @@ module.exports = {
         }),
         new Dotenv(),
     ],
+    devServer: {
+        static: path.join(__dirname, 'dist'),
+        compress: true,
+        historyApiFallback: true,
+        port: 3006,
+        open: true
+    }
 }
